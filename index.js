@@ -45,6 +45,11 @@ app.post('/parse', upload.single('myFile'), async (req, res) => {
                             programme_list: programme_list
                         } //this is the response test 
 
+                        fs.unlink('uploads/' + file.filename,function(err){  //delete file after 
+                            if(err) return console.log(err);
+                            console.log('File deleted successfully!');
+                       });  
+
                         res.json(response) 
                     } catch (e) {
                         res.end('Fail to generate data! Try again!')
